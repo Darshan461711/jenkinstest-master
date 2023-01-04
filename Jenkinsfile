@@ -12,16 +12,7 @@ pipeline {
                 bat 'mvn clean compile'
             }
         }
-        stage("build & SonarQube analysis") {
-            environment {
-                scannerHome = tool 'SonarQubeScanner'
-            }
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
+        
         stage('Test') {
             steps {
                 echo 'Testing'
@@ -41,6 +32,16 @@ pipeline {
 			       junit '/target/surefire-reports/*.xml'
 		     }
 	    }
+	    stage("build & SonarQube analysis") {
+            environment {
+                scannerHome = tool 'SonarQubeScanner'
+            }
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
 	    
 	    stage('Package')
 	    {
