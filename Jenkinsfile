@@ -36,7 +36,7 @@ pipeline {
 	    	steps{
 	    	  echo 'Sonar Scanner'
 	    	      withSonarQubeEnv('SonarQube Server'){
-	    	      	bat 'C:\Software\sonar-scanner\bin\sonar-scanner'
+	    	      	bat 'C:/Software/sonar-scanner/bin/sonar-scanner'
 	    	      }
 	    	}
 	    }
