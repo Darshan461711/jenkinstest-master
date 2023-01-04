@@ -40,15 +40,7 @@ pipeline {
 			       junit '/target/surefire-reports/*.xml'
 		     }
 	    }
-	    stage('Sonar')
-	    {
-	    	steps{
-	    	  echo 'Sonar Scanner'
-	    	      withSonarQubeEnv('SonarQube Server'){
-	    	      	bat 'C:/Software/sonar-scanner/bin/sonar-scanner'
-	    	      }
-	    	}
-	    }
+	    
 	    stage('Package')
 	    {
 	    	steps{
