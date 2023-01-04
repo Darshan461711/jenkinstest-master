@@ -12,15 +12,16 @@ pipeline {
                 bat 'mvn clean compile'
             }
         }
-        stage('Sonar')
-	    {
-	    	steps{
-	    	  echo 'Sonar Scanner'
-	    	      withSonarQubeEnv('SonarQube Server'){
-	    	      	bat 'C:/Software/sonar-scanner/bin/sonar-scanner'
-	    	      }
-	    	}
-	    }
+        stage("build & SonarQube analysis") {
+            environment {
+                scannerHome = tool 'SonarQubeScanner'
+            }
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing'
