@@ -13,59 +13,26 @@ pipeline {
             }
         }
         
-        stage('Test') {
+        stage('Sonar') {
             steps {
-                echo 'Testing'
-                bat 'mvn test'
+                echo 'Sonar Scanner'
+               	//def scannerHome = tool 'SonarQube Scanner 3.0'
+			    withSonarQubeEnv('sonarqube') {
+			    	bat 'C:/Software/sonar-scanner/bin/sonar-scanner'
+			    }
             }
         }
-        stage('JaCoCo') {
+        stage('Package') {
             steps {
-                echo 'Code Coverage'
-                jacoco()
+                echo 'Packaging'
+                bat 'mvn package -DskipTests'
             }
         }
-       stage("build & SonarQube analysis") {
-            environment {
-                scannerHome = tool 'SonarQubeScanner'
-            }
+        stage('Deploy') {
             steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
+                echo '## TODO DEPLOYMENT ##'
             }
         }
-	    
-	    stage('Package')
-	    {
-	    	steps{
-	    	  echo 'Package'
-	    	  bat 'mvn package -DskipTests'    
-	    	      
-	    	  
-	    	}
-	    }
-	    stage('Deploy')
-	    {
-	    	steps{
-	    	  echo '## TO DO DEPLOYMENT ##'
-	    	}
-	    }
-	   
-	    stage('JUnit')
-	     {
-		     steps{
-			       junit '/target/surefire-reports/*.xml'
-		     }
-	    }
-	    stage('Qwikeye publisher'){
-	    	steps{
-	    	
-	    	 qwikeye 'Darshan'
-	    	}
-	    
-	    
-	    }
 	    
     }
     
