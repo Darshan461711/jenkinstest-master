@@ -13,7 +13,19 @@ pipeline {
             }
         }
         
-        stage('Sonar') {
+        stage('Test') {
+            steps {
+                echo 'Testing'
+                bat 'mvn test'
+            }
+        }
+        stage('JaCoCo') {
+            steps {
+                echo 'Code Coverage'
+                jacoco()
+            }
+        }
+       stage('Sonar') {
             steps {
                 echo 'Sonar Scanner'
                	//def scannerHome = tool 'SonarQube Scanner 3.0'
@@ -22,17 +34,37 @@ pipeline {
 			    }
             }
         }
-        stage('Package') {
-            steps {
-                echo 'Packaging'
-                bat 'mvn package -DskipTests'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo '## TODO DEPLOYMENT ##'
-            }
-        }
+	    
+	    stage('Package')
+	    {
+	    	steps{
+	    	  echo 'Package'
+	    	  bat 'mvn package -DskipTests'    
+	    	      
+	    	  
+	    	}
+	    }
+	    stage('Deploy')
+	    {
+	    	steps{
+	    	  echo '## TO DO DEPLOYMENT ##'
+	    	}
+	    }
+	   
+	    stage('JUnit')
+	     {
+		     steps{
+			       junit '/target/surefire-reports/*.xml'
+		     }
+	    }
+	    stage('Qwikeye publisher'){
+	    	steps{
+	    	
+	    	 qwikeye 'Darshan'
+	    	}
+	    
+	    
+	    }
 	    
     }
     
