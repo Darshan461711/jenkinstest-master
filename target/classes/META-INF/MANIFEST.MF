@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Darshan K
+Build-Jdk: 11.0.16.1
+Implementation-Title: springboot
+Implementation-Version: 0.0.1
+Implementation-Vendor-Id: org.rahul
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/springboot/
+Created-By: Maven Integration for Eclipse
+
