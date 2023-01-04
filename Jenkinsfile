@@ -32,11 +32,7 @@ pipeline {
 		     }
 	    }
 	    
-	    stage('Qwikeye Publisher'){
-		    steps{
-                      qwikeye 'mahesh'
-		    }
-	    }
+	   
     }
     
     post {
