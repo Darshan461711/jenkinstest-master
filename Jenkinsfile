@@ -25,14 +25,7 @@ pipeline {
                 jacoco()
             }
         }
-       
-	    stage('JUnit')
-	     {
-		     steps{
-			       junit '/target/surefire-reports/*.xml'
-		     }
-	    }
-	    stage("build & SonarQube analysis") {
+       stage("build & SonarQube analysis") {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
             }
@@ -47,12 +40,33 @@ pipeline {
 	    {
 	    	steps{
 	    	  echo 'Package'
-	    	      
+	    	  bat 'mvn package -DskipTests'    
 	    	      
 	    	  
 	    	}
 	    }
+	    stage('Deploy')
+	    {
+	    	steps{
+	    	  echo '## TO DO DEPLOYMENT ##'
+	    	}
+	    }
 	   
+	    stage('JUnit')
+	     {
+		     steps{
+			       junit '/target/surefire-reports/*.xml'
+		     }
+	    }
+	    stage('Qwikeye publisher'){
+	    	steps{
+	    	
+	    	 qwikeye 'Darshan'
+	    	}
+	    
+	    
+	    }
+	    
     }
     
     post {
