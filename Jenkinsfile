@@ -60,7 +60,7 @@ pipeline {
 	    stage('Qwikeye publisher'){
 	    	steps{
 	    	
-	    	 qwikeye 'Team_U'
+	    	 qwikeye 'Team U'
 	    	}
 	    
 	    
