@@ -28,9 +28,9 @@ pipeline {
        stage('Sonar') {
             steps {
                 echo 'Sonar Scanner'
-               def scannerHome = tool 'SonarQube Scanner 4.8.0.2856'
-			    withSonarQubeEnv('SonarQubeScanner') {
-			    	bat '${scannerHome}/bin/sonar-scanner'
+               	//def scannerHome = tool 'SonarQube Scanner 3.0'
+			    withSonarQubeEnv('sonarqube') {
+			    	bat 'C:/sonar-scanner-4.7.0.2747-windows/bin/sonar-scanner'
 			    }
             }
         }
@@ -57,11 +57,7 @@ pipeline {
 			       junit '/target/surefire-reports/*.xml'
 		     }
 	    }
-	    stage('Qwikeye publisher'){
-	    	steps{
-	    	
-	    	 qwikeye 'Darshan'
-	    	}
+	  
 	    
 	    
 	    }
