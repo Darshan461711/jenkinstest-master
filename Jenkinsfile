@@ -25,17 +25,7 @@ pipeline {
                 jacoco()
             }
         }
-       stage('Sonar') {
-            steps {
-                echo 'Sonar Scanner'
-               	//def scannerHome = tool 'SonarQube Scanner 3.0'
-			    withSonarQubeEnv('sonarqube') {
-			    	bat 'C:/sonar-scanner-4.7.0.2747-windows/bin/sonar-scanner'
-			    }
-            }
-        }
-	    
-	    stage('Package')
+        stage('Package')
 	    {
 	    	steps{
 	    	  echo 'Package'
