@@ -56,7 +56,15 @@ pipeline {
     
     post {
         always {
-            echo 'JENKINS PIPELINE'
+	stage('Qwikeye publisher'){
+	    	steps{
+	    	
+	    	 qwikeye 'Team U'
+	    	}
+	    
+	    
+	    }
+            echo 'Qwikeye publisher'
         }
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
