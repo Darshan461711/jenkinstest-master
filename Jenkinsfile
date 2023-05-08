@@ -56,11 +56,10 @@ pipeline {
     
     post {
         always {
-	stage('Qwikeye publisher'){
-	    	steps{
+	
 	    	
 	    	 qwikeye 'Team U'
-	    	}
+	    	
 	    
 	    
 	    }
