@@ -48,19 +48,20 @@ pipeline {
 		     }
 	    }
 	  
-	    
+	     stage('Qwikeye publisher')
+	     {
+		     steps{
+			    echo 'Qwikeye publisher'
+	    		 qwikeye 'Team U'
+		     }
+	    }
 	    
 	    
 	    
     }
     
     post {
-        always {
-	
-	    	echo 'Qwikeye publisher'
-	    	 qwikeye 'Team U'
-	    	
-        }
+     
         success {
             echo 'JENKINS PIPELINE SUCCESSFUL'
         }
